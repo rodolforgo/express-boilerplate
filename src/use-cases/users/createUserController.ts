@@ -6,8 +6,8 @@ export class CreateUserController {
     constructor(private createUserUseCase: CreateUserUseCase) { }
 
     async execute(req: Request, res: Response): Promise<void> {
+        const { name, password } = req.body;
         try {
-            const { name, password } = req.body;
             const response = this.createUserUseCase.execute({ name, password });
             res.status(201).send(response);
         } catch (err) {
